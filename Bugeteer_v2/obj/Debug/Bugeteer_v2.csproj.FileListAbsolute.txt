@@ -1,0 +1,6 @@
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\bin\Debug\Bugeteer_v2.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\bin\Debug\Bugeteer_v2.exe
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\bin\Debug\Bugeteer_v2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\obj\Debug\Bugeteer_v2.exe
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\obj\Debug\Bugeteer_v2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\Bugeteer_v2\Bugeteer_v2\obj\Debug\Bugeteer_v2.csprojResolveAssemblyReference.cache
