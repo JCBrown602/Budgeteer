@@ -15,48 +15,61 @@ namespace Bugeteer_v2
             List<string> list = new List<string>();
             List<string> csvList = new List<string>();
             Bill newBill = new Bill();
+            int count = 0;
 
             try
             {
-                foreach (string line in File.ReadLines("numbers.csv"))
+                if (File.Exists("numbers.csv"))
                 {
-                    // Removes the double quotes from the transaction line
-                    // REF: https://www.dotnetperls.com/remove-char
-                    int index = 0;
-                    char[] result = new char[line.Length];
-                    for (int i = 0; i < line.Length; i++)
+                    Console.WriteLine("\n> numbers.csv found. Reading lines.");
+                    foreach (string line in File.ReadLines("numbers.csv"))
                     {
-                        if (line[i] != '"')
+                        Console.WriteLine("> Line {0}", count++);
+                        // Removes the double quotes from the transaction line
+                        // REF: https://www.dotnetperls.com/remove-char
+                        int index = 0;
+                        char[] result = new char[line.Length];
+                        for (int i = 0; i < line.Length; i++)
                         {
-                            result[index++] = line[i];
+                            if (line[i] != '"')
+                            {
+                                result[index++] = line[i];
+                            }
                         }
+
+                        string fixedLine = new string(result, 0, index);
+
+                        list.Add(fixedLine);
                     }
+                    Console.WriteLine("\n> {0} lines read.", count);
+                } else { Console.WriteLine("\n> numbers.csv does not exist."); }
 
-                    string fixedLine = new string(result, 0, index);
-
-                    list.Add(fixedLine);
-                }
-
-                int count = 0;
+                count = 0;
                 using (TextWriter tw = new StreamWriter("list3.txt"))
                 {
-                    foreach (var item in list)
+                    if (File.Exists("list3.txt"))
                     {
-                        string[] splitStr = list[count].Split(',');
-                        newBill.Date = splitStr[0];
-                        newBill.Amt = splitStr[1];
-                        newBill.Star = splitStr[2];
-                        newBill.Blank = splitStr[3];
-                        newBill.Desc = splitStr[4];
-                        Console.WriteLine(newBill.DisplayBill());
-                        tw.WriteLine(newBill.DisplayBill());
-                        count++;
-                    }
+                        Console.WriteLine("\n> list3.txt found. Reading items.");
+                        foreach (var item in list)
+                        {
+                            Console.WriteLine("> Item {0}: {1}", count++, item.ToString());
+                            string[] splitStr = list[count].Split(',');
+                            newBill.Date = splitStr[0];
+                            newBill.Amt = splitStr[1];
+                            newBill.Star = splitStr[2];
+                            newBill.Blank = splitStr[3];
+                            newBill.Desc = splitStr[4];
+                            Console.WriteLine(newBill.DisplayBill());
+                            tw.WriteLine(newBill.DisplayBill());
+                            count++;
+                        }
+                        Console.WriteLine("\n> {0} items found.", count);
+                    } else { Console.WriteLine("\n> Was not able to access list3.txt."); }
                 }
             }
             catch
             {
-                Console.WriteLine("> File not found.");
+                Console.WriteLine("\n> File not found.\n\n");
             }
 
         }
